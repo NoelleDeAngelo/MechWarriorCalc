@@ -3,7 +3,8 @@
 import styles from "./roster.module.css";
 import unitList from "../../unitList";
 import { useRoster } from "@/context/RosterContext"
-import { useState, useRef } from "react";
+import { useState} from "react";
+import Link from "next/link";
 
 
 
@@ -41,7 +42,10 @@ export default function Roster() {
   return (
     <div>
       <h1>Pick your points</h1>
-      <input onChange={(e)=>updateGamePoints(e.target.value)} type='number'></input>
+      <input
+        onChange={(e) => updateGamePoints(e.target.value)}
+        type="number"
+      ></input>
       <h1>Pick your units</h1>
       <ul>
         {Object.keys(unitList).map((unitCode) => (
@@ -53,9 +57,10 @@ export default function Roster() {
           </li>
         ))}
       </ul>
-
       <h2>You picked:</h2>
-      <p>{rosterPoints} of { gamePoints}</p>
+      <p>
+        {rosterPoints} of {gamePoints}
+      </p>
       <ul>
         {roster.map((unit, index) => (
           <li key={unit.id}>
@@ -69,6 +74,9 @@ export default function Roster() {
           </li>
         ))}
       </ul>
+      <button id= {styles.playButton} className={styles.button}>
+        <Link href={"/game"}>Play</Link>
+      </button>
     </div>
   );
 }
