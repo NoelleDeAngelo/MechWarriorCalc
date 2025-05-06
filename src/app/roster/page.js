@@ -27,7 +27,7 @@ export default function Roster() {
     for (var i = 0; i < newRoster.length; i++){
       if (newRoster[i].id === uid) {
         let points = newRoster[i].points;
-        setRosterPoints((prev) => prev - points);
+        setRosterPoints((prev) => prev - points >0 ? prev - points :0);
         newRoster.splice(i, 1);
         break;
       }
