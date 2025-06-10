@@ -11,7 +11,7 @@ const units = {
   mechs: {
     AOD104: {
       name: "Hatchetman",
-      id: "AOD104", //This is the unique id for the unit. It should be unique across all units.
+      wId: "AOD104", //This is the unique id for the unit. It should be unique across all units.
       variant: "HCT2F-M",
       points: 133,
       class: "Medium",//this is important for equip and pilot upgrades
@@ -48,7 +48,7 @@ const units = {
     vehicles: {
       AOD071: {
         name: "SM2 Heavy Artillery Vehicle",
-        id: "AOD071",
+        wId: "AOD071",
         points: 36,
         faction: "Bannson's Raiders",
         factionIcon: "iconBR",
