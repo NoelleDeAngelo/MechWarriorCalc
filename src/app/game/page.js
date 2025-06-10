@@ -15,7 +15,7 @@ export default function Game() {
       <h1>GAME</h1>
       <section id={styles.unitsSection}>
         {roster.map((unit, index) => (
-          <div className={styles.card} key={unit.id}>
+          <div className={styles.card} key={unit.id + index}>
             <h2><a href={"/unit"}>{unit.name}</a></h2>
           </div>
         ))}
