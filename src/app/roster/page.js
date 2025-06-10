@@ -1,7 +1,7 @@
 'use client'
 
 import styles from "./roster.module.css";
-import unitList from "../../unitList";
+import units from "../../data/units";
 import { useRoster } from "@/context/RosterContext"
 import { useState} from "react";
 import Link from "next/link";
@@ -14,8 +14,8 @@ export default function Roster() {
   const [rosterPoints, setRosterPoints] = useState(0);
   const [gamePoints, setGamePoints] = useState(0);
 
-  const addUnit = (unitCode) => {
-    var addedUnit = {...unitList[unitCode]};
+  const addUnit = (unitCode, type) => {
+    var addedUnit = {...units[type][unitCode]};
     addedUnit.id = Date.now();
     setRoster([...roster, addedUnit]);
     setRosterPoints(prev=>prev+addedUnit.points);
@@ -48,10 +48,18 @@ export default function Roster() {
       ></input>
       <h1>Pick your units</h1>
       <ul>
-        {Object.keys(unitList).map((unitCode) => (
+        {Object.keys(units.mechs).map((unitCode) => (
           <li key={unitCode}>
-            {unitList[unitCode].name + " (" + unitList[unitCode].points + ")"}
-            <button onClick={() => addUnit(unitCode)} className={styles.button}>
+            {units.mechs[unitCode].name + " (" + units.mechs[unitCode].points + ")"}
+            <button onClick={() => addUnit(unitCode, "mechs")} className={styles.button}>
+              +
+            </button>
+          </li>
+        ))}
+        {Object.keys(units.vehicles).map((unitCode) => (
+          <li key={unitCode}>
+            {units.vehicles[unitCode].name + " (" + units.vehicles[unitCode].points + ")"}
+            <button onClick={() => addUnit(unitCode, "vehicles")} className={styles.button}>
               +
             </button>
           </li>
