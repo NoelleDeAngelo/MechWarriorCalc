@@ -25,18 +25,24 @@ export default function Game() {
   return (
     <div>
       <h1>GAME</h1>
-      <section id={styles.unitsSection}>
-        {roster.map((unit, index) => (
-          <div onClick={expandUnit(index)} className={styles.card} key={unit.id + index}>
-            {unit.expanded ? (<UnitCard unit={unit } />) :(<h2 >{unit.name}</h2>)}
-
-          </div>
-        ))}
-      </section>
-
       <button id={styles.adjustButton} className={styles.button}>
         <Link href={"/roster"}>Adjust Roster</Link>
       </button>
+      <section id={styles.unitsSection}>
+        {roster.map((unit, index) => (
+          <div
+            className={styles.card}
+            key={unit.id + index}
+            onClick={!unit.expanded ? expandUnit(index) : null}
+          >
+            {unit.expanded ? (
+              <UnitCard unit={unit} expandUnit={expandUnit} index={index} />
+            ) : (
+              <h2>{unit.name}</h2>
+            )}
+          </div>
+        ))}
+      </section>
     </div>
   );
 }

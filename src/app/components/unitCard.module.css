@@ -1,0 +1,51 @@
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.close:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.statsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 1rem;
+  gap:10px;
+}
+.tableStat {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  align-content: center;
+}
+
+.circle {
+  border-radius: 50%;
+}
+.red {
+  background-color: red;
+}
+.green {
+  background-color: green;
+}
+.blue {
+  background-color: blue;
+}
+.yellow {
+  background-color: yellow;
+}
+.gray {
+  background-color: gray;
+}
+.black {
+  background-color: black;
+  color : white;
+}

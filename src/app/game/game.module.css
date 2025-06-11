@@ -3,10 +3,15 @@
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
   padding: 3rem;
+  margin: 3vh;
+  position: relative;
 }
 
 #unitsSection{
-display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #adjustButton {
