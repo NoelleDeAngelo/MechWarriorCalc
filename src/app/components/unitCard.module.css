@@ -12,19 +12,70 @@
 .close:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+.button {
+  background-color: aquamarine;
+  margin: 15px;
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  font-size: 1.3rem;
+}
+
+.unitImage {
+  float: left;
+  margin-right: 4%;
+  width: 40%;
+}
+
+.stat{
+  margin: 5px;
+}
+
+.damageTable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+.damageContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 1rem;
+  justify-content: space-evenly;
+}
 .statsContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   margin-top: 1rem;
   gap:10px;
 }
 .tableStat {
   display: inline-block;
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
   text-align: center;
   align-content: center;
+  font-size: 1.2rem;
+}
+
+.rulesContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 20px 5px;
+}
+.ruleSummary {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  width: 100%;
+  gap: 10px;
+  & span {
+    width: 25px;
+    height: 25px;
+  }
 }
 
 .circle {
@@ -32,18 +83,24 @@
 }
 .red {
   background-color: red;
+  color: white;
 }
 .green {
   background-color: green;
+  color: white;
 }
 .blue {
   background-color: blue;
+  color: white;
+
 }
 .yellow {
   background-color: yellow;
 }
-.gray {
+.grey {
   background-color: gray;
+  color: white;
+
 }
 .black {
   background-color: black;
