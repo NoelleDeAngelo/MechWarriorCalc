@@ -25,10 +25,10 @@ export default function Game() {
   return (
     <div>
       <h1>GAME</h1>
-      <button id={styles.adjustButton} className={styles.button}>
+      <button className={`${styles.button} ${styles.adjustButton}`}>
         <Link href={"/roster"}>Adjust Roster</Link>
       </button>
-      <section id={styles.unitsSection}>
+      <section className={styles.unitsSection}>
         {roster.map((unit, index) => (
           <div
             className={styles.card}
