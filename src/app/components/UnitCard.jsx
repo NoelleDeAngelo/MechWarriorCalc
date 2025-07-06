@@ -2,6 +2,7 @@
 import { useRoster } from "@/context/RosterContext";
 import { useState, useRef } from "react";
 import styles from "./unitCard.module.css";
+import rules from "../../data/rules";
 
 
 
@@ -11,11 +12,12 @@ export default function UnitCard({ unit, expandUnit, index }) {
   const [currentHeat, setCurrentHeat] = useState(unit.currentHeat || 0);
   const [alive, setAlive] = useState(unit.alive);
 
+  var rulesList = [];
 
   const takeDamage = () => {
     if (damage < unit.table1.attack.length-1) {
       setDamage((prev) => prev + 1);
-      roster[index].damage = damage+1;
+      roster[index].damage = damage + 1;
     } else {
       setAlive(false);
       roster[index].alive = false;
@@ -43,6 +45,12 @@ export default function UnitCard({ unit, expandUnit, index }) {
     }
   };
 
+  const addRule = (ruleCode,type) => {
+    if (ruleCode && type) {
+      rulesList.push([ruleCode, type]);
+    }
+  }
+
   const checkBackground = (bgCode) => {
     if (!bgCode) return;
     let style = ""
@@ -69,7 +77,6 @@ export default function UnitCard({ unit, expandUnit, index }) {
 
   return (
     <div>
-
       <img
         className={styles.unitImage}
         src={`/assets/units/${unit.wId}.jpg`}
@@ -125,6 +132,7 @@ export default function UnitCard({ unit, expandUnit, index }) {
         <div className={styles.damageContainer}>
           {Object.entries(unit.table1).map(([type, value]) => {
             if (type === "repair") return null; // Skip repair
+            addRule(value[damage][1], type);
             return (
               <div className={styles.statsContainer} key={type}>
                 <img width="35px" src={`/assets/icons/${type}.jpg`}></img>
@@ -145,7 +153,7 @@ export default function UnitCard({ unit, expandUnit, index }) {
             );
           })}
           <div className={styles.rulesContainer}>
-            <details className={styles.rule}>
+            {/* <details className={styles.rule}>
               <summary className={styles.ruleSummary}>
                 <span className={styles.green}></span>INFILTRATE (optional)
               </summary>
@@ -173,7 +181,17 @@ export default function UnitCard({ unit, expandUnit, index }) {
                 zones; infantry, up to twice their speed values away. No unit
                 may be deployed in an opposing player's deployment zone.
               </p>
-            </details>
+            </details> */}
+            {rulesList.map(([ruleCode, type], i) => {
+              return (
+                <details className={styles.rule}>
+                  <summary className={styles.ruleSummary}>
+                    <span className={checkBackground(ruleCode)}></span>
+                    {rules.meleeDamage[ruleCode].name}
+                  </summary>
+                  <p>{rules.meleeDamage[ruleCode].text}</p>
+                </details>
+              ); })}
           </div>
         </div>
         {unit.vent && (
