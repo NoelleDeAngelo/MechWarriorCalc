@@ -17,6 +17,10 @@ export default function UnitCard({ unit, expandUnit, index }) {
     .map(([type, value]) => [value[damage][1], type])
     .filter(([ruleCode]) => ruleCode); // Skip invalid/null ruleCodes
 
+  const heatRulesList = unit.heat ? Object.entries(unit.heat)
+    .map(([type, value]) => [value[currentHeat][1], type])
+    .filter(([ruleCode]) => ruleCode) : [];
+
   const takeDamage = () => {
     if (damage < unit.table1.attack.length - 1) {
       setDamage((prev) => prev + 1);
@@ -149,16 +153,30 @@ export default function UnitCard({ unit, expandUnit, index }) {
             );
           })}
           <div className={styles.rulesContainer}>
-            {rulesList.map(([ruleCode, type], i) => {
+            {rulesList.map(([ruleCode, type], i) => { //Damage rules
               return (
                 <details className={styles.rule}>
                   <summary className={styles.ruleSummary}>
                     <span className={checkBackground(ruleCode)}></span>
-                    {rules[type][ruleCode.slice(0, -1)].name}
+                    {rules.damage[type][ruleCode.slice(0, -1)].name}
                   </summary>
-                  <p>{rules[type][ruleCode.slice(0, -1)].text}</p>
+                  <p>{rules.damage[type][ruleCode.slice(0, -1)].text}</p>
                 </details>
               );
+            })}
+            {heatRulesList[0] && <h3>Heat Rules</h3> }
+            {heatRulesList.map(([ruleCode, type], i) => { //Heat rules
+              if (rules.heat[type] && rules.heat[type][ruleCode.slice(0, -1)]) {
+              return (
+                <details className={styles.rule}>
+                  <summary className={styles.ruleSummary}>
+                    <span className={checkBackground(ruleCode)}></span>
+                    {rules.heat[type][ruleCode.slice(0, -1)].name}
+                  </summary>
+                  <p>{rules.heat[type][ruleCode.slice(0, -1)].text}</p>
+                </details>
+              );
+              }
             })}
           </div>
         </div>
