@@ -46,10 +46,13 @@ export default function UnitCard({ unit, expandUnit, index }) {
 
   const vent = () => {
     let ventNum = unit.vent;
-    if (currentHeat > 0) {
+      if( currentHeat - ventNum >= 0) {
       setCurrentHeat((prev) => prev - ventNum);
       roster[index].currentHeat = currentHeat - ventNum;
-    }
+      } else {
+        setCurrentHeat(0);
+        roster[index].currentHeat = 0;
+      }
   };
 
 
